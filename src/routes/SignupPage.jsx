@@ -9,7 +9,7 @@ export default function SignupPage() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    const [loading, setLoading] = useState('');
+    const [loading, setLoading] = useState(false);
 
     const { session, signupNewUser } = UserAuth();
     const navigate = useNavigate();
@@ -17,6 +17,7 @@ export default function SignupPage() {
     console.log(email, password);
 
     const handleSignUp = async (e) => {
+        console.log("Handling sign up");
         e.preventDefault()
         setLoading(true);
 
@@ -24,6 +25,7 @@ export default function SignupPage() {
             const result = await signupNewUser(email, password)
 
             if (result.success) {
+                setLoading(false);
                 navigate('/dashboard')
             }
         } catch (error) {
@@ -35,7 +37,13 @@ export default function SignupPage() {
     return (
         <div className="d-flex justify-content-center align-items-center"
             style={{ height: '90vh', width: '90vw' }}>
-            <AuthComp isLogin={false} setEmail={setEmail} setPassword={setPassword} error={error} />
+            <AuthComp
+                isLogin={false}
+                setEmail={setEmail}
+                setPassword={setPassword}
+                error={error}
+                handleSignUp={handleSignUp}
+            />
         </div >
     )
 }
