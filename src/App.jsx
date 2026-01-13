@@ -3,7 +3,7 @@ import { Routes, Route } from 'react-router-dom'
 import LandingPage from './routes/LandingPage.jsx'
 import SignupPage from './routes/SignupPage.jsx'
 import LoginPage from './routes/LoginPage.jsx'
-import AuthContextProvider from './context/AuthContext.jsx'
+import { AuthContextProvider } from './context/AuthContext.jsx'
 
 function App() {
 
