@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
     const [session, setSession] = useState(undefined);
+    const [email, setEmail] = useState(session.user?.email || '??');
 
     // sign up
     const signupNewUser = async (email, password) => {
@@ -55,6 +56,7 @@ export const AuthContextProvider = ({ children }) => {
         }
     }
 
+    // get session
     useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
             setSession(session);
@@ -65,6 +67,22 @@ export const AuthContextProvider = ({ children }) => {
         })
     }, []);
 
+    // change display name
+    const changeDisplayName = async (newName) => {
+        try {
+            const { data, error } = await supabase.auth.updateUser({
+                data: { display_name: newName }
+            });
+
+            if (error) {
+                console.error("Error updating display name:", error.message);
+            } else {
+                console.log("Display name updated:", data);
+            }
+        } catch (error) {
+            console.error("Unexpected error:", error);
+        }
+    };
 
 
     return (
