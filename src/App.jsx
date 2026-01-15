@@ -5,7 +5,8 @@ import SignupPage from './routes/SignupPage.jsx'
 import LoginPage from './routes/LoginPage.jsx'
 import Dashboard from './routes/Dashboard.jsx'
 import { AuthContextProvider } from './context/AuthContext.jsx'
-import PrivateRoute from './reroute/PrivateRoute.jsx'
+import LoggedOutReroute from './reroute/LoggedOutReroute.jsx'
+import LoggedInReroute from './reroute/LoggedInReroute.jsx'
 
 function App() {
 
@@ -14,9 +15,9 @@ function App() {
     <AuthContextProvider>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route path="/signup" element={<LoggedInReroute><SignupPage /></LoggedInReroute>} />
+        <Route path="/login" element={<LoggedInReroute><LoginPage /></LoggedInReroute>} />
+        <Route path="/dashboard" element={<LoggedOutReroute><Dashboard /></LoggedOutReroute>} />
       </Routes>
     </AuthContextProvider>
   )
