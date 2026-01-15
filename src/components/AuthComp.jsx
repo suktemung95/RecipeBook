@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-export default function AuthComp({ isLogin, setEmail, setPassword, error, handleSignUp }) {
+export default function AuthComp({ isLogin, setEmail, setPassword, error, handleSignUp, loading }) {
     return (
         <form
             className="d-flex flex-column p-3 gap-4 bg-secondary w-25 h-50 rounded"
@@ -18,7 +18,7 @@ export default function AuthComp({ isLogin, setEmail, setPassword, error, handle
                 placeholder="Enter your password"
                 required
             />
-            <button type="submit">Continue</button>
+            <button type="submit" disabled={loading}>Continue</button>
 
             {error && <p className="text-danger text-center pt-4">{error}</p>}
 

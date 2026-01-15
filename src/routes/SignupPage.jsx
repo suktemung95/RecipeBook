@@ -25,11 +25,12 @@ export default function SignupPage() {
             const result = await signupNewUser(email, password)
 
             if (result.success) {
+                console.log("Signup successful")
                 setLoading(false);
                 navigate('/dashboard')
             }
         } catch (error) {
-            setError("An error occurred");
+            setError("An error occurred: " + error.message);
             setLoading(false)
         }
     }
@@ -43,6 +44,7 @@ export default function SignupPage() {
                 setPassword={setPassword}
                 error={error}
                 handleSignUp={handleSignUp}
+                isLoading={loading}
             />
         </div >
     )
