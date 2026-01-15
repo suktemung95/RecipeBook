@@ -17,7 +17,11 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<LoggedInReroute><SignupPage /></LoggedInReroute>} />
         <Route path="/login" element={<LoggedInReroute><LoginPage /></LoggedInReroute>} />
-        <Route path="/dashboard" element={<LoggedOutReroute><Dashboard /></LoggedOutReroute>} />
+        <Route path="/dashboard" element={
+          <LoggedOutReroute>
+            <Dashboard />
+          </LoggedOutReroute>
+        } />
       </Routes>
     </AuthContextProvider>
   )
