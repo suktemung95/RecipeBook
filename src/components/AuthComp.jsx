@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 export default function AuthComp({ isLogin, setEmail, setPassword, error, handleSignUp, loading }) {
+    console.log("Opened AuthComp")
     return (
         <form
             className="d-flex flex-column p-3 gap-4 bg-secondary w-25 h-50 rounded"
