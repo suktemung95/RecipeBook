@@ -13,7 +13,7 @@ export default function Navbar() {
             <div className="d-flex flex-grow-1 align-items-center gap-4"
                 style={{ paddingLeft: '200px' }}>
                 <DropdownButton title="About">
-                    <Dropdown.Item href="#/action-1">What the fuck you found me</Dropdown.Item>
+                    <Dropdown.Item href="#/action-1">What you found me</Dropdown.Item>
                 </DropdownButton>
             </div>
             <div className='d-flex gap-4'>
