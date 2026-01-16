@@ -55,6 +55,7 @@ export const AuthContextProvider = ({ children }) => {
         }
     }
 
+    // get session
     useEffect(() => {
         supabase.auth.getSession().then(({ data: { session } }) => {
             setSession(session);
@@ -64,8 +65,6 @@ export const AuthContextProvider = ({ children }) => {
             setSession(session);
         })
     }, []);
-
-
 
     return (
         <AuthContext.Provider value={{ session, signupNewUser, signOut, signInUser }}>

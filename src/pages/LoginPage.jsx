@@ -11,25 +11,26 @@ export default function SignupPage() {
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
 
-    const { session, signupNewUser } = UserAuth();
+    const { session, signInUser } = UserAuth();
     const navigate = useNavigate();
     console.log(session);
     console.log(email, password);
 
-    const handleSignUp = async (e) => {
-        console.log("Handling sign up");
+    const handleSignIn = async (e) => {
+        console.log("Handling sign in");
         e.preventDefault()
         setLoading(true);
 
         try {
-            const result = await signupNewUser(email, password)
+            const result = await signInUser({ email, password })
 
             if (result.success) {
+                console.log("Sign in successful")
                 setLoading(false);
                 navigate('/dashboard')
             }
         } catch (error) {
-            setError("An error occurred");
+            setError("An error occurred: " + error.message);
             setLoading(false)
         }
     }
@@ -38,11 +39,12 @@ export default function SignupPage() {
         <div className="d-flex justify-content-center align-items-center"
             style={{ height: '90vh', width: '90vw' }}>
             <AuthComp
-                isLogin={false}
+                isLogin={true}
                 setEmail={setEmail}
                 setPassword={setPassword}
                 error={error}
-                handleSignUp={handleSignUp}
+                handleSignUp={handleSignIn}
+                isLoading={loading}
             />
         </div >
     )
